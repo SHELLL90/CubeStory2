@@ -65,7 +65,10 @@ public class InputManager : MonoBehaviour
 
     public void SwitchActionMap(ActionMaps actionMap)
     {
-        _playerInput.SwitchCurrentActionMap(actionMap.ToString());
+        SwitchActionMap(actionMap.ToString());
     }
-
+    public void SwitchActionMap(string actionMap)
+    {
+        _playerInput.SwitchCurrentActionMap(actionMap);
+    }
 }

@@ -38,7 +38,7 @@ public class PlayerJump : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody2D>();
         _playerStates = GetComponent<PlayerStates>();
 
-        _playerStates.ActionLanded += ResetNumberJumps;
+        _playerStates.ActionLandedDown += ResetNumberJumps;
 
         ResetNumberJumps();
     }

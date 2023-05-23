@@ -71,7 +71,7 @@ public class PlayerForce : MonoBehaviour
         _lastTimeTryForceRight = Time.time;
     }
 
-    private void Force(PlayerForceSetting forceSetting)
+    public void Force(PlayerForceSetting forceSetting)
     {
         Vector2 direction = forceSetting.directionForce;
         if (!forceSetting.worldDirection) direction = transform.TransformDirection(direction);

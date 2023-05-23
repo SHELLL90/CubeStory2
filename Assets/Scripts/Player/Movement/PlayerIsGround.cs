@@ -7,6 +7,7 @@ using UnityEngine;
 public class PlayerIsGround : MonoBehaviour
 {
     [SerializeField] private RaycastIsGroundSetting downRaycast;
+    [SerializeField] private RaycastIsGroundSetting upRaycast;
     [SerializeField] private RaycastIsGroundSetting leftRaycast;
     [SerializeField] private RaycastIsGroundSetting rightRaycast;
     [Header("Other")]
@@ -28,6 +29,7 @@ public class PlayerIsGround : MonoBehaviour
     private void Check()
     {
         _playerStates.IsGroundDown = GetBoolIsGround(downRaycast);
+        _playerStates.IsGroundUp = GetBoolIsGround(upRaycast);
         _playerStates.IsGroundLeft = GetBoolIsGround(leftRaycast);
         _playerStates.IsGroundRight = GetBoolIsGround(rightRaycast);
     }

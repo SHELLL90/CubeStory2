@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class PlayerStates : MonoBehaviour
 {
-    public System.Action ActionLanded { get; set; }
+    public System.Action ActionLandedDown { get; set; }
+    public System.Action ActionLandedLeft { get; set; }
+    public System.Action ActionLandedRight { get; set; }
+    public System.Action ActionLandedUp { get; set; }
 
     private bool _isGroundDown;
     public bool IsGroundDown
@@ -14,7 +17,7 @@ public class PlayerStates : MonoBehaviour
         {
             if (_isGroundDown != value && _isGroundDown == false && value == true)
             {
-                ActionLanded?.Invoke();
+                ActionLandedDown?.Invoke();
             }
             _isGroundDown = value;
         }
@@ -24,13 +27,60 @@ public class PlayerStates : MonoBehaviour
     public bool IsGroundLeft
     {
         get { return _isGroundLeft; }
-        set { _isGroundLeft = value; }
+        set 
+        {
+            if (_isGroundLeft != value && _isGroundLeft == false && value == true)
+            {
+                ActionLandedLeft?.Invoke();
+            }
+            _isGroundLeft = value;
+        }
     }
 
     private bool _isGroundRight;
     public bool IsGroundRight
     {
         get { return _isGroundRight; }
-        set { _isGroundRight = value; }
+        set 
+        {
+            if (_isGroundRight != value && _isGroundRight == false && value == true)
+            {
+                ActionLandedRight?.Invoke();
+            }
+            _isGroundRight = value;
+        }
     }
+
+    private bool _isGroundUp;
+    public bool IsGroundUp
+    {
+        get { return _isGroundDown; }
+        set
+        {
+            if (_isGroundUp != value && _isGroundUp == false && value == true)
+            {
+                ActionLandedUp?.Invoke();
+            }
+            _isGroundUp = value;
+        }
+    }
+
+    public System.Action<bool> ActionTargetSearched { get; set; }
+
+    private bool _targetSearched;
+
+    public bool TargetSearched
+    {
+        get { return _targetSearched; }
+        set 
+        {
+            if (_targetSearched != value)
+            {
+                ActionTargetSearched?.Invoke(value);
+            }
+            _targetSearched = value;
+        }
+    }
+
+    public System.Action<float> ActionReloading { get; set; }
 }

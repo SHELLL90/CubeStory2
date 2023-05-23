@@ -21,6 +21,7 @@ public class InputManager : MonoBehaviour
     public static Action ActionLeft { get; set; }
     public static Action ActionRight { get; set; }
     public static Action ActionDown { get; set; }
+    public static Action ActionAttack { get; set; }
 
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -57,6 +58,14 @@ public class InputManager : MonoBehaviour
         if (context.performed)
         {
             ActionDown?.Invoke();
+        }
+    }
+
+    public void OnAttack(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            ActionAttack?.Invoke();
         }
     }
 

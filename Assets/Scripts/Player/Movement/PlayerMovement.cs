@@ -63,10 +63,22 @@ public class PlayerMovement : MonoBehaviour
             _rigidbody.AddForce(_directionMove * Acceleration);
             if (!_playerStates.IsGroundDown || _directionMove.x != 0) _rigidbody.AddTorque(-_directionMove.x * defaultSpeedTorque, forceModeTorque);
         }
+
+        _playerStates.Velocity = _rigidbody.velocity;
+        _playerStates.VelocityMagnitude = _rigidbody.velocity.magnitude;
     }
 
     private void SetMoveDirection(Vector2 direction)
     {
         _directionMove = direction;
+
+        if (_directionMove != Vector2.zero)
+        {
+            _playerStates.IsMovement = true;
+        }
+        else
+        {
+            _playerStates.IsMovement = false;
+        }
     }
 }

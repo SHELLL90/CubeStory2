@@ -9,6 +9,10 @@ public class PlayerStates : MonoBehaviour
     public System.Action ActionLandedRight { get; set; }
     public System.Action ActionLandedUp { get; set; }
 
+    public bool IsMovement { get; set; }
+    public float VelocityMagnitude { get; set; }
+    public Vector2 Velocity { get; set; }
+
     private bool _isGroundDown;
     public bool IsGroundDown
     {

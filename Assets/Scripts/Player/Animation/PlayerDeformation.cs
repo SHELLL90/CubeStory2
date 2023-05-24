@@ -56,6 +56,7 @@ public class PlayerDeformation : MonoBehaviour
                 _animator.SetBool(movementRight.nameAnimation, false);
                 _animator.SetBool(movementLeft.nameAnimation, true);
             }
+            
             _canPlayLandedAnimation = false;
         }
         else if (!_canPlayLandedAnimation)

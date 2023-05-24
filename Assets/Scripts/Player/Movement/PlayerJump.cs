@@ -76,6 +76,8 @@ public class PlayerJump : MonoBehaviour
         _rigidbody.AddForce(setting.worldDirectionJump * setting.defaultJumpForce, forceMode);
         CurrentNumberJumps--;
 
+        _playerStates.ActionForceUp?.Invoke();
+
         _timeCanNextJump = Time.time + delayBetweenJumps;
     }
 

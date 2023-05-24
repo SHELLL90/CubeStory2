@@ -2051,6 +2051,18 @@ MonoBehaviour:
   landedRight:
     nameAnimation: LandedRight
     velocityToPlay: 10
+  forceDown:
+    nameAnimation: ForceDown
+    velocityToPlay: 0
+  forceUp:
+    nameAnimation: ForceUp
+    velocityToPlay: 0
+  forceLeft:
+    nameAnimation: ForceLeft
+    velocityToPlay: 0
+  forceRight:
+    nameAnimation: ForceRight
+    velocityToPlay: 0
   idle:
     nameAnimation: 
     velocityToPlay: 10

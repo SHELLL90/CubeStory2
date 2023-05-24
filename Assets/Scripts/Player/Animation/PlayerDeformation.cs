@@ -11,6 +11,11 @@ public class PlayerDeformation : MonoBehaviour
     [SerializeField] private DeformationSetting landedUp;
     [SerializeField] private DeformationSetting landedLeft;
     [SerializeField] private DeformationSetting landedRight;
+    [Header("Animation Force Names")]
+    [SerializeField] private DeformationSetting forceDown;
+    [SerializeField] private DeformationSetting forceUp;
+    [SerializeField] private DeformationSetting forceLeft;
+    [SerializeField] private DeformationSetting forceRight;
     [Header("Animation Movement Names")]
     [SerializeField] private DeformationSetting idle;
     [SerializeField] private DeformationSetting movementLeft;
@@ -27,6 +32,11 @@ public class PlayerDeformation : MonoBehaviour
     {
         _animator = GetComponent<Animator>();
         _playerStates = GetComponent<PlayerStates>();
+
+        _playerStates.ActionForceDown += PlayForceDown;
+        _playerStates.ActionForceUp += PlayForceUp;
+        _playerStates.ActionForceLeft += PlayForceLeft;
+        _playerStates.ActionForceRight += PlayForceRight;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -70,6 +80,11 @@ public class PlayerDeformation : MonoBehaviour
         }
     }
 
+    private void PlayForceDown() => Play(forceDown.nameAnimation);
+    private void PlayForceUp() => Play(forceUp.nameAnimation);
+    private void PlayForceLeft() => Play(forceLeft.nameAnimation);
+    private void PlayForceRight() => Play(forceRight.nameAnimation);
+
     private void ChoiceNecessary(float velocity, Vector2 point)
     {
         float angle = Vector2.SignedAngle(point - (Vector2)transform.position, transform.right);
@@ -84,15 +99,20 @@ public class PlayerDeformation : MonoBehaviour
     {
         if (_playerStates.VelocityMagnitude >= deformationSetting.velocityToPlay)
         {
-            _animator.Play(deformationSetting.nameAnimation);
+            Play(deformationSetting.nameAnimation);
         }
     }
     private void TryPlay(DeformationSetting deformationSetting, float velocity)
     {
         if (velocity >= deformationSetting.velocityToPlay)
         {
-            _animator.Play(deformationSetting.nameAnimation);
+            Play(deformationSetting.nameAnimation);
         }
+    }
+
+    private void Play(string name)
+    {
+        _animator.Play(name);
     }
 }
 

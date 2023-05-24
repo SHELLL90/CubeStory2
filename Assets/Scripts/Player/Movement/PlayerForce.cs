@@ -48,6 +48,8 @@ public class PlayerForce : MonoBehaviour
         {
             Force(forceDown);
             _timeCanNextForceDown = Time.time + forceDown.delayBetweenForce;
+
+            _playerStates.ActionForceDown?.Invoke();
         }
     }
 
@@ -57,6 +59,8 @@ public class PlayerForce : MonoBehaviour
         {
             Force(forceLeft);
             _timeCanNextForceSide = Time.time + forceLeft.delayBetweenForce;
+
+            _playerStates.ActionForceLeft?.Invoke();
         }
         _lastTimeTryForceLeft = Time.time;
     }
@@ -67,6 +71,8 @@ public class PlayerForce : MonoBehaviour
         {
             Force(forceRight);
             _timeCanNextForceSide = Time.time + forceRight.delayBetweenForce;
+
+            _playerStates.ActionForceRight?.Invoke();
         }
         _lastTimeTryForceRight = Time.time;
     }

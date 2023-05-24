@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class PlayerStates : MonoBehaviour
 {
+    public System.Action ActionForceDown { get; set; }
+    public System.Action ActionForceUp { get; set; }
+    public System.Action ActionForceLeft { get; set; }
+    public System.Action ActionForceRight { get; set; }
     public System.Action ActionLandedDown { get; set; }
     public System.Action ActionLandedLeft { get; set; }
     public System.Action ActionLandedRight { get; set; }

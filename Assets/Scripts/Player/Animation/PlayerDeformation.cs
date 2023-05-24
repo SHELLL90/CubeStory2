@@ -33,6 +33,8 @@ public class PlayerDeformation : MonoBehaviour
         _animator = GetComponent<Animator>();
         _playerStates = GetComponent<PlayerStates>();
 
+        _playerStates.ActionLanded += Landed;
+
         _playerStates.ActionForceDown += PlayForceDown;
         _playerStates.ActionForceUp += PlayForceUp;
         _playerStates.ActionForceLeft += PlayForceLeft;
@@ -41,7 +43,7 @@ public class PlayerDeformation : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        ChoiceNecessary(collision.relativeVelocity.magnitude, collision.GetContact(0).point);
+        //ChoiceNecessary(collision.relativeVelocity.magnitude, collision.GetContact(0).point);
     }
 
     private void FixedUpdate()
@@ -84,6 +86,23 @@ public class PlayerDeformation : MonoBehaviour
     private void PlayForceUp() => Play(forceUp.nameAnimation);
     private void PlayForceLeft() => Play(forceLeft.nameAnimation);
     private void PlayForceRight() => Play(forceRight.nameAnimation);
+
+    private void Landed(Side side, float velocity)
+    {
+        TryPlay(GetLandedSide(side), velocity);
+    }
+
+    private DeformationSetting GetLandedSide(Side side)
+    {
+        DeformationSetting setting = null;
+
+        if (side == Side.Down) setting = landedDown;
+        else if (side == Side.Up) setting = landedUp;
+        else if (side == Side.Left) setting = landedLeft;
+        else if (side == Side.Right) setting = landedRight;
+
+        return setting;
+    }
 
     private void ChoiceNecessary(float velocity, Vector2 point)
     {

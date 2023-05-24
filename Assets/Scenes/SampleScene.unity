@@ -5633,6 +5633,14 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5321636208421552198, guid: a382065ce9fbbee4fbff3faf5146172e, type: 3}
+      propertyPath: idle.nameAnimation
+      value: Idle
+      objectReference: {fileID: 0}
+    - target: {fileID: 5321636208421552198, guid: a382065ce9fbbee4fbff3faf5146172e, type: 3}
+      propertyPath: idle.velocityToPlay
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8330591499727036597, guid: a382065ce9fbbee4fbff3faf5146172e, type: 3}
       propertyPath: m_Name
       value: Player

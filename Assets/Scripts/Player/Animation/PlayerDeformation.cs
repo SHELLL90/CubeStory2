@@ -11,9 +11,17 @@ public class PlayerDeformation : MonoBehaviour
     [SerializeField] private DeformationSetting landedUp;
     [SerializeField] private DeformationSetting landedLeft;
     [SerializeField] private DeformationSetting landedRight;
+    [Header("Animation Movement Names")]
+    [SerializeField] private DeformationSetting idle;
+    [SerializeField] private DeformationSetting movementLeft;
+    [SerializeField] private DeformationSetting movementRight;
 
     private Animator _animator;
     private PlayerStates _playerStates;
+
+    private bool _canPlayLandedAnimation = true;
+
+    private int _frames = 0;
 
     private void Awake()
     {
@@ -24,6 +32,41 @@ public class PlayerDeformation : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         ChoiceNecessary(collision.relativeVelocity.magnitude, collision.GetContact(0).point);
+    }
+
+    private void FixedUpdate()
+    {
+        if (_frames % 5 == 0) MovementDeformation();
+        _frames++;
+    }
+
+    private void MovementDeformation()
+    {
+        if (_playerStates.IsGroundDown && _playerStates.IsMovement)
+        {
+            _animator.SetBool(idle.nameAnimation, false);
+            
+            if (_playerStates.DiretionMovement.x > 0 && movementRight.velocityToPlay <= _playerStates.VelocityMagnitude)
+            {
+                _animator.SetBool(movementRight.nameAnimation, true);
+                _animator.SetBool(movementLeft.nameAnimation, false);
+            }
+            else if (_playerStates.DiretionMovement.x < 0 && movementLeft.velocityToPlay <= _playerStates.VelocityMagnitude)
+            {
+                _animator.SetBool(movementRight.nameAnimation, false);
+                _animator.SetBool(movementLeft.nameAnimation, true);
+            }
+            _canPlayLandedAnimation = false;
+        }
+        else if (!_canPlayLandedAnimation)
+        {
+            _animator.SetBool(idle.nameAnimation, true);
+
+            _animator.SetBool(movementRight.nameAnimation, false);
+            _animator.SetBool(movementLeft.nameAnimation, false);
+
+            _canPlayLandedAnimation = true;
+        }
     }
 
     private void ChoiceNecessary(float velocity, Vector2 point)

@@ -8,6 +8,7 @@ public class EnemyAttacker : MonoBehaviour
     [SerializeField] private float damage;
     [SerializeField] private float radiusAttack;
     [SerializeField] private float delayBetweenAttack;
+    [SerializeField] private float delayBeforeAttack;
 
     private EnemyLogic _enemyLogic;
 
@@ -28,11 +29,13 @@ public class EnemyAttacker : MonoBehaviour
 
     private IEnumerator Attacking(PlayerHealth player)
     {
+        yield return new WaitForSeconds(delayBeforeAttack);
         while (player != null)
         {
             if (Vector2.Distance(player.transform.position, transform.position) <= radiusAttack)
             {
                 _enemyLogic.ActionAttacking?.Invoke();
+                _enemyLogic.ActionPlayAnimation?.Invoke(TypeAnimation.Attack);
 
                 player.Damage(damage);
                 yield return new WaitForSeconds(delayBetweenAttack);

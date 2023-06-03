@@ -18,7 +18,7 @@ public class EnemyHealth : MonoBehaviour, IHealth
         private set
         {
             _currentHealth = value;
-            _enemyLogic.ActionChangeHealth?.Invoke(maxHealth, _currentHealth);
+            _enemyLogic.ActionChangeHealth?.Invoke(_currentHealth, maxHealth);
             if (_currentHealth <= 0)
             {
                 Death();
@@ -38,6 +38,7 @@ public class EnemyHealth : MonoBehaviour, IHealth
     {
         CurrentHealth -= value;
         _enemyLogic.ActionHitEnemy?.Invoke();
+        _enemyLogic.ActionPlayAnimation?.Invoke(TypeAnimation.Damage);
     }
 
     private void Death()

@@ -10,4 +10,5 @@ public class EnemyLogic : MonoBehaviour
     public System.Action<bool> ActionMovement { get; set; }
     public System.Action<MovementTarget> ActionMovementTarget { get; set; }
     public System.Action<PlayerHealth> ActionPlayerFinded { get; set; }
+    public System.Action<TypeAnimation> ActionPlayAnimation { get; set; }
 }

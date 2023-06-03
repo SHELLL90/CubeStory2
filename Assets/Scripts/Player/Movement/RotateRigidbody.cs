@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class PlayerRotate : MonoBehaviour
+public class RotateRigidbody : MonoBehaviour
 {
     [SerializeField] private AnimationCurve curveMultiplySpeedRotate;
     [SerializeField] private float defaultSpeedRotate = 10.0f;
@@ -19,19 +19,19 @@ public class PlayerRotate : MonoBehaviour
 
     private void FixedUpdate()
     {
-        TryRotatePlayer();
+        TryRotate();
     }
 
-    private void TryRotatePlayer()
+    private void TryRotate()
     {
         float currentOffset = transform.eulerAngles.z;
         if (Displaced(currentOffset))
         {
-            RotatePlayer(currentOffset);
+            Rotate(currentOffset);
         }
     }
 
-    private void RotatePlayer(float currentOffset)
+    private void Rotate(float currentOffset)
     {
         float multiplySpeed = CalculationMultiply(currentOffset);
         float speedRotate = defaultSpeedRotate * multiplySpeed;

@@ -20,6 +20,8 @@ public class PlayerDeformation : MonoBehaviour
     [SerializeField] private DeformationSetting idle;
     [SerializeField] private DeformationSetting movementLeft;
     [SerializeField] private DeformationSetting movementRight;
+    [Header("Animation Health")]
+    [SerializeField] private DeformationSetting damage;
 
     private Animator _animator;
     private PlayerStates _playerStates;
@@ -34,6 +36,7 @@ public class PlayerDeformation : MonoBehaviour
         _playerStates = GetComponent<PlayerStates>();
 
         _playerStates.ActionLanded += Landed;
+        _playerStates.ActionDamage += PlayDamage;
 
         _playerStates.ActionForceDown += PlayForceDown;
         _playerStates.ActionForceUp += PlayForceUp;
@@ -82,6 +85,7 @@ public class PlayerDeformation : MonoBehaviour
         }
     }
 
+    private void PlayDamage() => Play(damage.nameAnimation);
     private void PlayForceDown() => Play(forceDown.nameAnimation);
     private void PlayForceUp() => Play(forceUp.nameAnimation);
     private void PlayForceLeft() => Play(forceLeft.nameAnimation);

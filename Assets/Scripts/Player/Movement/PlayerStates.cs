@@ -15,6 +15,7 @@ public class PlayerStates : MonoBehaviour
     public System.Action ActionLandedLeft { get; set; }
     public System.Action ActionLandedRight { get; set; }
     public System.Action ActionLandedUp { get; set; }
+    public System.Action ActionDamage { get; set; }
 
     public bool IsMovement { get; set; }
     public float VelocityMagnitude { get; set; }

@@ -78,4 +78,10 @@ public class AttackTargetSearch : MonoBehaviour
             _objects.Remove(obj);
         }
     }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, radiusSearch);
+    }
 }

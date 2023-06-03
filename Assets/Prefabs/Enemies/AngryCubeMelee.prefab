@@ -1324,8 +1324,9 @@ GameObject:
   - component: {fileID: 1688091342507095421}
   - component: {fileID: 454418689231835578}
   - component: {fileID: 4534620146378319550}
+  - component: {fileID: 1135562612374902617}
   m_Layer: 8
-  m_Name: AngryCube
+  m_Name: AngryCubeMelee
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1523,10 +1524,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92e9d8edb05372e4582db83781374fe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  typeAttack: 0
   damage: 0.2
   radiusAttack: 3
   delayBetweenAttack: 2
   delayBeforeAttack: 0.75
+  prefabMissile: {fileID: 0}
+  pointShoot: {fileID: 0}
+  missileSetting:
+    damageValue: 0
+    forceAttackSetting:
+      powerForce: 0
+      forceMode: 0
+    speed: 0
+    forceMode: 0
+    target: {fileID: 0}
+  forceTarget: 1
+  forceAttackSetting:
+    powerForce: 0
+    forceMode: 0
 --- !u!114 &8116143156368610639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1641,6 +1657,19 @@ MonoBehaviour:
   defaultMultiplyScale: 1
   delayHide: 1
   timeDelayHide: 10
+--- !u!114 &1135562612374902617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8116143156368610625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea96208692b125c45adf58f96d1b1fb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxVelocity: 20
 --- !u!1 &8116143157898923045
 GameObject:
   m_ObjectHideFlags: 0

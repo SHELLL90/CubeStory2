@@ -15,7 +15,7 @@ public class HealthBarManager : MonoBehaviour
     {
         Instance = this;
 
-        _bars = new PoolBase<HealthBarUI>(Preload, GetAction, ReturnAction, 5);
+        _bars = new PoolBase<HealthBarUI>(Preload, GetAction, ReturnAction, 2);
     }
 
     public void ReturnHealthBar(HealthBarUI healthBar)

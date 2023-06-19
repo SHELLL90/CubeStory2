@@ -1492,6 +1492,7 @@ MonoBehaviour:
     speed: 5
   - worldPosition: {x: 0.6, y: -6.21}
     speed: 5
+  loop: 0
   distanceStopped: 0.5
   moveToTarget: 1
   movementTargetSetting:
@@ -1525,7 +1526,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   typeAttack: 0
-  damage: 0.2
+  damage: 2
   radiusAttack: 3
   delayBetweenAttack: 2
   delayBeforeAttack: 0.75
@@ -1543,6 +1544,10 @@ MonoBehaviour:
   forceAttackSetting:
     powerForce: 0
     forceMode: 0
+  needRaycast: 0
+  layerMaskRaycast:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &8116143156368610639
 MonoBehaviour:
   m_ObjectHideFlags: 0

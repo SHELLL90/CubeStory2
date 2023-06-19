@@ -42,6 +42,8 @@ public class PlayerDeformation : MonoBehaviour
         _playerStates.ActionForceUp += PlayForceUp;
         _playerStates.ActionForceLeft += PlayForceLeft;
         _playerStates.ActionForceRight += PlayForceRight;
+
+        _playerStates.ActionDead += Dead;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -57,6 +59,7 @@ public class PlayerDeformation : MonoBehaviour
 
     private void MovementDeformation()
     {
+        if (_playerStates.IsDead) return;
         if (_playerStates.IsGroundDown && _playerStates.IsMovement)
         {
             _animator.SetBool(idle.nameAnimation, false);
@@ -127,6 +130,7 @@ public class PlayerDeformation : MonoBehaviour
     }
     private void TryPlay(DeformationSetting deformationSetting, float velocity)
     {
+        if (_playerStates.IsDead) return;
         if (velocity >= deformationSetting.velocityToPlay)
         {
             Play(deformationSetting.nameAnimation);
@@ -135,7 +139,13 @@ public class PlayerDeformation : MonoBehaviour
 
     private void Play(string name)
     {
+        if (_playerStates.IsDead) return;
         _animator.Play(name);
+    }
+
+    private void Dead(bool isDead)
+    {
+        _animator.SetBool("Dead", isDead);
     }
 }
 

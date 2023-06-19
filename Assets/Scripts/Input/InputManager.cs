@@ -9,7 +9,20 @@ public enum ActionMaps { Player, None }
 [RequireComponent(typeof(PlayerInput))]
 public class InputManager : MonoBehaviour
 {
+    public static InputManager Instance { get; private set; }
+
     private PlayerInput _playerInput;
+
+    private void OnEnable()
+    {
+        Instance = this;
+    }
+
+    private void OnDisable()
+    {
+        Instance = null;
+    }
+
     private void Awake()
     {
         _playerInput = GetComponent<PlayerInput>();

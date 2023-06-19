@@ -953,6 +953,7 @@ MonoBehaviour:
     speed: 5
   - worldPosition: {x: 0.6, y: -6.21}
     speed: 5
+  loop: 0
   distanceStopped: 0.5
   moveToTarget: 1
   movementTargetSetting:
@@ -993,7 +994,7 @@ MonoBehaviour:
   prefabMissile: {fileID: 7079592956868660480, guid: 3d6c69a21907d894a86f6ea30b488dd9, type: 3}
   pointShoot: {fileID: 5922880355842681127}
   missileSetting:
-    damageValue: 0.5
+    damageValue: 1
     forceAttackSetting:
       powerForce: 7
       forceMode: 1
@@ -1004,6 +1005,10 @@ MonoBehaviour:
   forceAttackSetting:
     powerForce: 15
     forceMode: 1
+  needRaycast: 0
+  layerMaskRaycast:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &5459133010321168985
 MonoBehaviour:
   m_ObjectHideFlags: 0

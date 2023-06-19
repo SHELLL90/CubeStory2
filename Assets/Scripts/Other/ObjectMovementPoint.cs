@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
 
-public class ObjectMovement : MonoBehaviour
+public class ObjectMovementPoint : MonoBehaviour
 {
     [SerializeField] private MovementPoint[] movementPoints;
+    [SerializeField] private bool loop;
+    [SerializeField] private bool startCanMovement = true;
     [SerializeField] [ShowIf("_thereIsRigidbody")] [AllowNesting] private float distanceStopped;
 
     #region Editor
@@ -30,12 +32,13 @@ public class ObjectMovement : MonoBehaviour
     private Rigidbody2D _rigidbody;
     private bool _ignoteY;
 
-    public System.Action<bool> IsMoving { get; set; }
+    public System.Action<bool> ActionIsMoving { get; set; }
+    public System.Action ActionEndMove { get; set; }
 
     private void Awake()
     {
         SwitchMovementPoint(0);
-        CanMovement(true);
+        CanMovement(startCanMovement);
 
         _rigidbody = GetComponent<Rigidbody2D>();
         if (_rigidbody == null) distanceStopped = 0;
@@ -112,7 +115,16 @@ public class ObjectMovement : MonoBehaviour
         _currentPointIndex++;
         if (_currentPointIndex >= movementPoints.Length)
         {
-            _currentPointIndex = 0;
+            if (loop)
+            {
+                _currentPointIndex = 0;
+            }
+            else
+            {
+                _canMovement = false;
+                ActionEndMove?.Invoke();
+                return;
+            }
         }
 
         SwitchMovementPoint(_currentPointIndex);
@@ -121,7 +133,7 @@ public class ObjectMovement : MonoBehaviour
     public void CanMovement(bool can)
     {
         _canMovement = can;
-        IsMoving?.Invoke(_canMovement);
+        ActionIsMoving?.Invoke(_canMovement);
     }
 
     private void SwitchMovementPoint(int index)

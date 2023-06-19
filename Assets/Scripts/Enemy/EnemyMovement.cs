@@ -4,7 +4,7 @@ using UnityEngine;
 using NaughtyAttributes;
 
 [RequireComponent(typeof(EnemyLogic))]
-public class EnemyMovement : ObjectMovement
+public class EnemyMovement : ObjectMovementPoint
 {
     [SerializeField] private bool moveToTarget;
     [SerializeField] [ShowIf("moveToTarget")] [AllowNesting] private MovementTarget movementTargetSetting;
@@ -16,7 +16,7 @@ public class EnemyMovement : ObjectMovement
     private void Start()
     {
         _enemyLogic = GetComponent<EnemyLogic>();
-        base.IsMoving += IsMovingEnemy;
+        base.ActionIsMoving += IsMovingEnemy;
 
         _enemyLogic.ActionPlayerFinded += PlayerFinded;
     }

@@ -18,6 +18,8 @@ public class EnemyAttacker : MonoBehaviour
     [SerializeField] [ShowIf("typeAttack", TypeAttack.Range)] [AllowNesting] private MissileSetting missileSetting;
     [SerializeField] [ShowIf("typeAttack", TypeAttack.Melee)] [AllowNesting] private bool forceTarget;
     [SerializeField] [ShowIf("forceTarget")] [AllowNesting] private ForceAttackSetting forceAttackSetting;
+    [SerializeField] private bool needRaycast;
+    [SerializeField] [ShowIf("needRaycast")] [AllowNesting] private LayerMask layerMaskRaycast;
 
     #region Editor
     private void OnValidate()
@@ -49,43 +51,51 @@ public class EnemyAttacker : MonoBehaviour
     private IEnumerator Attacking(PlayerHealth player)
     {
         yield return new WaitForSeconds(delayBeforeAttack);
-        while (player != null)
+        while (player != null && !player.IsDead)
         {
             if (Vector2.Distance(player.transform.position, transform.position) <= radiusAttack)
             {
-                _enemyLogic.ActionAttacking?.Invoke();
-                _enemyLogic.ActionPlayAnimation?.Invoke(TypeAnimation.Attack);
+                bool canAttack = true;
 
-                if (typeAttack == TypeAttack.Melee)
-                {
-                    player.Damage(damage);
-                }
-                else if (typeAttack == TypeAttack.Range)
-                {
-                    Missile missile = Instantiate(prefabMissile);
+                if (needRaycast) canAttack = !RaycastTarget(player.transform);
 
-                    missile.transform.position = pointShoot.position;
-                    
-                    missileSetting.target = player.transform;
-                    missile.SetMissileSetting(missileSetting);
-                }
-
-                if (forceTarget)
+                if (canAttack)
                 {
-                    forceAttackSetting.ForceTarget(player.transform, transform.position);
-                    //Rigidbody2D rigidbody = player.GetComponent<Rigidbody2D>();
-                    //if (rigidbody != null)
-                    //{
-                    //    Vector2 direction = player.transform.position - transform.position;
-                    //    direction = direction.normalized;
-                    //    rigidbody.AddForce(direction * forceAttackSetting.powerForce, forceAttackSetting.forceMode);
-                    //}
+                    _enemyLogic.ActionAttacking?.Invoke();
+                    _enemyLogic.ActionPlayAnimation?.Invoke(TypeAnimation.Attack);
+
+                    if (typeAttack == TypeAttack.Melee)
+                    {
+                        player.Damage(damage);
+
+                        if (forceTarget)
+                        {
+                            forceAttackSetting.ForceTarget(player.transform, transform.position);
+                        }
+                    }
+                    else if (typeAttack == TypeAttack.Range)
+                    {
+                        Missile missile = Instantiate(prefabMissile);
+
+                        missile.transform.position = pointShoot.position;
+
+                        missileSetting.target = player.transform;
+                        missile.SetMissileSetting(missileSetting);
+                    }
                 }
 
                 yield return new WaitForSeconds(delayBetweenAttack);
             }
             yield return null;
         }
+    }
+
+    private bool RaycastTarget(Transform target)
+    {
+        Vector2 direction = (target.position - transform.position).normalized;
+        float distance = Vector2.Distance(target.position, transform.position);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, distance, layerMaskRaycast.value);
+        return hit;
     }
 
     private void StopCorAttacking()

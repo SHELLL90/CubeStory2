@@ -16,11 +16,24 @@ public class PlayerStates : MonoBehaviour
     public System.Action ActionLandedRight { get; set; }
     public System.Action ActionLandedUp { get; set; }
     public System.Action ActionDamage { get; set; }
+    public System.Action<bool> ActionDead { get; set; }
 
     public bool IsMovement { get; set; }
     public float VelocityMagnitude { get; set; }
     public Vector2 Velocity { get; set; }
     public Vector2 DiretionMovement { get; set; }
+
+    private bool _isDead;
+    public bool IsDead
+    {
+        get { return _isDead; }
+        set 
+        { 
+            _isDead = value;
+            ActionDead?.Invoke(_isDead);
+        }
+    }
+
 
     private bool _isGroundDown;
     public bool IsGroundDown

@@ -1492,7 +1492,8 @@ MonoBehaviour:
     speed: 5
   - worldPosition: {x: 0.6, y: -6.21}
     speed: 5
-  loop: 0
+  loop: 1
+  startCanMovement: 1
   distanceStopped: 0.5
   moveToTarget: 1
   movementTargetSetting:

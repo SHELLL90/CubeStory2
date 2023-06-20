@@ -1637,6 +1637,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5459133010321168989, guid: 171b1003f48515d4b991a97825686041, type: 3}
+      propertyPath: loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5459133010321168989, guid: 171b1003f48515d4b991a97825686041, type: 3}
       propertyPath: movementPoints.Array.data[0].worldPosition.x
       value: 50
       objectReference: {fileID: 0}
@@ -1838,6 +1842,14 @@ PrefabInstance:
     - target: {fileID: 288730240106253775, guid: 65c93728fffaa0549863c4cc1a07dda4, type: 3}
       propertyPath: m_Name
       value: Door
+      objectReference: {fileID: 0}
+    - target: {fileID: 288730240106253811, guid: 65c93728fffaa0549863c4cc1a07dda4, type: 3}
+      propertyPath: movementPoints.Array.data[0].worldPosition.x
+      value: 90.12872
+      objectReference: {fileID: 0}
+    - target: {fileID: 288730240106253811, guid: 65c93728fffaa0549863c4cc1a07dda4, type: 3}
+      propertyPath: movementPoints.Array.data[0].worldPosition.y
+      value: 13.67
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []

@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum TypeJump { Up, Side }
+
 [RequireComponent(typeof(PlayerStates))]
 [RequireComponent(typeof(PlayerIsGround))]
 [RequireComponent(typeof(Rigidbody2D))]
@@ -9,6 +11,7 @@ public class PlayerJump : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField] private int numberJumps = 2;
+    [SerializeField] private int numberJumpsSide = 5;
     [SerializeField] private float delayBetweenJumps = 0.05f;
     [SerializeField] private JumpForceSetting jumpUp;
     [SerializeField] private JumpForceSetting jumpLeft;
@@ -17,6 +20,7 @@ public class PlayerJump : MonoBehaviour
     [SerializeField] private ForceMode2D forceMode = ForceMode2D.Force;
 
     public int CurrentNumberJumps { get; set; }
+    public int CurrentNumberJumpsSide { get; set; }
 
     private float _timeCanNextJump;
 
@@ -45,16 +49,19 @@ public class PlayerJump : MonoBehaviour
 
     private void TryJump()
     {
-        if (CurrentNumberJumps <= 0 || _timeCanNextJump > Time.time) return;
+        if (_timeCanNextJump > Time.time) return;
+        TryJumpUp();
+        TryJumpSide();
+    }
+
+    private void TryJumpSide()
+    {
+        if (CurrentNumberJumpsSide <= 0) return;
         bool jumped = false;
+        
         if (!_playerStates.IsGroundDown)
         {
-            if (_playerStates.IsGroundLeft && _playerStates.IsGroundRight)
-            {
-                Jump(jumpUp);
-                jumped = true;
-            }
-            else
+            if (_playerStates.IsGroundLeft || _playerStates.IsGroundRight)
             {
                 if (_playerStates.IsGroundLeft)
                 {
@@ -68,13 +75,34 @@ public class PlayerJump : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void TryJumpUp()
+    {
+        if (CurrentNumberJumps <= 0) return;
+        bool jumped = false;
+        if (!_playerStates.IsGroundDown)
+        {
+            if (_playerStates.IsGroundLeft && _playerStates.IsGroundRight)
+            {
+                Jump(jumpUp);
+                jumped = true;
+            }
+            if (_playerStates.IsGroundLeft || _playerStates.IsGroundRight)
+            {
+                jumped = true;
+            }
+        }
         if (!jumped) Jump(jumpUp);
     }
 
     private void Jump(JumpForceSetting setting)
     {
         _rigidbody.AddForce(setting.worldDirectionJump * setting.defaultJumpForce, forceMode);
-        CurrentNumberJumps--;
+
+        if (setting.typeJump == TypeJump.Up) CurrentNumberJumps--;
+        else if (setting.typeJump == TypeJump.Side) CurrentNumberJumpsSide--;
+
 
         _playerStates.ActionForceUp?.Invoke();
 
@@ -84,6 +112,7 @@ public class PlayerJump : MonoBehaviour
     private void ResetNumberJumps()
     {
         CurrentNumberJumps = numberJumps;
+        CurrentNumberJumpsSide = numberJumpsSide;
     }
 }
 
@@ -92,4 +121,5 @@ public class JumpForceSetting
 {
     public float defaultJumpForce;
     public Vector2 worldDirectionJump = Vector2.up;
+    public TypeJump typeJump;
 }

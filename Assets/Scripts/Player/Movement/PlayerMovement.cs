@@ -70,6 +70,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void SetMoveDirection(Vector2 direction)
     {
+        direction.y = 0;
         _directionMove = direction;
         _playerStates.DiretionMovement = _directionMove;
         if (_directionMove != Vector2.zero)

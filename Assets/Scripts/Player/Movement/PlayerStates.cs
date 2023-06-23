@@ -41,10 +41,15 @@ public class PlayerStates : MonoBehaviour
         get { return _isGroundDown; }
         set 
         {
-            if (_isGroundDown != value && _isGroundDown == false && value == true)
+            if (_isGroundDown != value)
             {
-                ActionLandedDown?.Invoke();
-                ActionLanded?.Invoke(Side.Down, VelocityMagnitude);
+                if (_isGroundDown == false && value == true)
+                {
+                    ActionLandedDown?.Invoke();
+                    ActionLanded?.Invoke(Side.Down, VelocityMagnitude);
+                }
+
+                MobileInputSystem.TryActiveDown(!value);
             }
             _isGroundDown = value;
         }
@@ -107,6 +112,7 @@ public class PlayerStates : MonoBehaviour
             if (_targetSearched != value)
             {
                 ActionTargetSearched?.Invoke(value);
+                MobileInputSystem.TryActiveAttack(value);
             }
             _targetSearched = value;
         }

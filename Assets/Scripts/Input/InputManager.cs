@@ -6,26 +6,53 @@ using UnityEngine.InputSystem;
 
 public enum ActionMaps { Player, None }
 
-[RequireComponent(typeof(PlayerInput))]
+//[RequireComponent(typeof(PlayerInput))]
 public class InputManager : MonoBehaviour
 {
     public static InputManager Instance { get; private set; }
 
-    private PlayerInput _playerInput;
+    private MainPlayerInput _input;
 
     private void OnEnable()
     {
         Instance = this;
+        _input.Enable();
+
+        _input.Player.Move.performed += OnMove;
+        _input.Player.Move.canceled += OnMove;
+        _input.Player.Move.started += OnMove;
+
+        _input.Player.Jump.performed += OnJump;
+        _input.Player.Jump.canceled += OnJump;
+        _input.Player.Jump.started += OnJump;
+
+
+        _input.Player.Left.performed += OnLeft;
+        _input.Player.Left.canceled += OnLeft;
+        _input.Player.Left.started += OnLeft;
+
+        _input.Player.Right.performed += OnRight;
+        _input.Player.Right.canceled += OnRight;
+        _input.Player.Right.started += OnRight;
+
+        _input.Player.Down.performed += OnDown;
+        _input.Player.Down.canceled += OnDown;
+        _input.Player.Down.started += OnDown;
+
+        _input.Player.Attack.performed += OnAttack;
+        _input.Player.Attack.canceled += OnAttack;
+        _input.Player.Attack.started += OnAttack;
     }
 
     private void OnDisable()
     {
         Instance = null;
+        _input.Disable();
     }
 
     private void Awake()
     {
-        _playerInput = GetComponent<PlayerInput>();
+        _input = new MainPlayerInput();
     }
 
     #region Player
@@ -91,6 +118,7 @@ public class InputManager : MonoBehaviour
     }
     public void SwitchActionMap(string actionMap)
     {
-        _playerInput.SwitchCurrentActionMap(actionMap);
+        if (actionMap == "Player") _input.Player.Enable();
+        else _input.Player.Disable();
     }
 }

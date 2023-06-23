@@ -697,6 +697,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4608907325402886497, guid: 1eb6a2d93d417d147accba1380c99018, type: 3}
+      propertyPath: forceDown.delayBetweenForce
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 4608907325951304936, guid: 1eb6a2d93d417d147accba1380c99018, type: 3}
       propertyPath: m_Name
       value: GAME_PREFABS
@@ -745,7 +749,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8295917835265177798, guid: 1eb6a2d93d417d147accba1380c99018, type: 3}
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 1eb6a2d93d417d147accba1380c99018, type: 3}
 --- !u!4 &172426753 stripped
@@ -2762,6 +2767,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1185491217 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5496590910695690306, guid: 1eb6a2d93d417d147accba1380c99018, type: 3}
+  m_PrefabInstance: {fileID: 164714595}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1185491222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1185491217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fca92068697e5384abe50172771a30dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ControlPath: <Keyboard>/downArrow
 --- !u!1001 &1221130879
 PrefabInstance:
   m_ObjectHideFlags: 0

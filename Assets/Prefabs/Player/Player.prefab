@@ -2296,7 +2296,7 @@ MonoBehaviour:
     delayBetweenForce: 3
     directionForce: {x: 1, y: 0}
     worldDirection: 0
-  delayBetweenTryForceSide: 0.3
+  delayBetweenTryForceSide: 0.4
   forceMode: 1
 --- !u!114 &8330591499727036577
 MonoBehaviour:

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7891911057674985130}
   - component: {fileID: 1739290829738737201}
   - component: {fileID: 5729580829067774414}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: grass_center
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,25 +95,6 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0

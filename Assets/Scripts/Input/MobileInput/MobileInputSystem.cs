@@ -24,6 +24,18 @@ public class MobileInputSystem : MonoBehaviour
 
     private void Start()
     {
+        if (!DataManager.IsMobile)
+        {
+            Destroy(move);
+            Destroy(jump);
+            Destroy(attack);
+            Destroy(down);
+
+            Instance = null;
+            Destroy(this.gameObject);
+            return;
+        }
+
         TryActiveAttack(false);
         TryActiveDown(false);
     }

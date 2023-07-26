@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63f4e557c86e53f49bdb30c8cac78124, type: 3}
+  m_Name: Level SO 1
+  m_EditorClassIdentifier: 
+  sceneLevel: {fileID: 102900000, guid: 6a129dae6dfe9154a8f037f78abb79ce, type: 3}
+  id: GroupTest_LVL1
+  nameScene: LVL1
+  group: {fileID: 11400000, guid: 5d8574bea497c8d47b6d7a6c5cf9568a, type: 2}
+  nextLevel: {fileID: 11400000, guid: 5b84ac2ff73b4a44694c9e85701fa113, type: 2}
+  spriteLevel: {fileID: 0}

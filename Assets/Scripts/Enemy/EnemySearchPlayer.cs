@@ -25,10 +25,14 @@ public class EnemySearchPlayer : MonoBehaviour
         _circleCollider.radius = radius;
     }
 
-    //private void Update()
-    //{
-    //    Search();
-    //}
+    private void Update()
+    {
+        if (_timeCanNextSearch < Time.time)
+        {
+            enemyLogic.ActionPlayerFinded?.Invoke(_player);
+            _timeCanNextSearch = Time.time + delaySearch;
+        }
+    }
 
     private void Search()
     {

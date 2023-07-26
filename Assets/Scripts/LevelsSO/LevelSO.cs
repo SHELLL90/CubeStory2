@@ -14,7 +14,9 @@ public class LevelSO : ScriptableObject
     [ReadOnly]
     public string nameScene;
     [Header("Other SO")]
+    [ReadOnly]
     public GroupLevelsSO group;
+    [ReadOnly]
     public LevelSO nextLevel;
     [Header("Setting")]
     [ShowAssetPreview]

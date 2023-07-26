@@ -30,7 +30,6 @@ public class DataManager : MonoBehaviour
 #if UNITY_EDITOR
         DataLoad();
 #endif
-        Debug.Log(GetCurrentLevelSO().id);
     }
 
     private void DataLoad()

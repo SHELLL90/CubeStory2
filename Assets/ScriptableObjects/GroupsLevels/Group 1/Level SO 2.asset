@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63f4e557c86e53f49bdb30c8cac78124, type: 3}
   m_Name: Level SO 2
   m_EditorClassIdentifier: 
-  sceneLevel: {fileID: 102900000, guid: 2cda990e2423bbf4892e6590ba056729, type: 3}
-  id: GroupTest_SampleScene
-  nameScene: SampleScene
+  sceneLevel: {fileID: 102900000, guid: 8997a5b53286fe740b4c0ae4362a01a2, type: 3}
+  id: GroupTest_LVL2
+  nameScene: LVL2
   group: {fileID: 11400000, guid: 5d8574bea497c8d47b6d7a6c5cf9568a, type: 2}
   nextLevel: {fileID: 0}
   spriteLevel: {fileID: 0}

@@ -24,6 +24,8 @@ public class DataManager : MonoBehaviour
             return;
         }
 
+        transform.SetParent(null);
+
         Instance = this;
         DontDestroyOnLoad(this.gameObject);
 
@@ -43,6 +45,7 @@ public class DataManager : MonoBehaviour
     }
 
     #region LEVELS
+#if UNITY_EDITOR
     [Button("Configure Levels")]
     public void ConfigureLevels()
     {
@@ -101,10 +104,8 @@ public class DataManager : MonoBehaviour
                 Debug.LogError("Current Level Is Null!!! Index: " + i + "; Group " + group.name);
             }
 
-#if UNITY_EDITOR
             EditorUtility.SetDirty(group);
             AssetDatabase.SaveAssets();
-#endif
         }
     }
 
@@ -114,21 +115,21 @@ public class DataManager : MonoBehaviour
         level.nextLevel = nextLevel;
         level.group = group;
 
-#if UNITY_EDITOR
         EditorUtility.SetDirty(level);
         AssetDatabase.SaveAssets();
-#endif
     }
+#endif
 
     public LevelSO GetNextLevelSO()
     {
-        return GetCurrentLevelSO().nextLevel;
+        LevelSO currentLevel = GetCurrentLevelSO();
+        if (currentLevel == null) return null;
+        return currentLevel.nextLevel;
     }
 
     public LevelSO GetCurrentLevelSO()
     {
         string sceneName = GetCurrentSceneName();
-
         return GetLevelSOByNameScene(sceneName);
     }
 
@@ -150,9 +151,9 @@ public class DataManager : MonoBehaviour
         {
             for (int x = 0; x < dataSetting.groupsLevel[i].levels.Length; x++)
             {
-                if (dataSetting.groupsLevel[i].levels[i].nameScene == sceneName)
+                if (dataSetting.groupsLevel[i].levels[x].nameScene == sceneName)
                 {
-                    return dataSetting.groupsLevel[i].levels[i];
+                    return dataSetting.groupsLevel[i].levels[x];
                 }
             }
         }
@@ -178,9 +179,9 @@ public class DataManager : MonoBehaviour
         {
             for (int x = 0; x < dataSetting.groupsLevel[i].levels.Length; x++)
             {
-                if (dataSetting.groupsLevel[i].levels[i].id == idLevel)
+                if (dataSetting.groupsLevel[x].levels[i].id == idLevel)
                 {
-                    return dataSetting.groupsLevel[i].levels[i];
+                    return dataSetting.groupsLevel[i].levels[x];
                 }
             }
         }

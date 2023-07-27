@@ -7,9 +7,10 @@ public class FinishLevel : MonoBehaviour
     public void Finish()
     {
         LevelSO nextLevel = DataManager.Instance.GetNextLevelSO();
-        Debug.Log(nextLevel.nameScene);
+        
         if (nextLevel != null)
         {
+            Debug.Log(nextLevel.nameScene);
             SceneTransition.SwitchScene(nextLevel.nameScene);
         }
         else

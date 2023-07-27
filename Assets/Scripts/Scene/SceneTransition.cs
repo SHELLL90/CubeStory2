@@ -67,6 +67,8 @@ public class SceneTransition : MonoBehaviour
             return;
         }
 
+        transform.SetParent(null);
+
         SceneManager.activeSceneChanged += Initialization;
 
         _animator = GetComponent<Animator>();

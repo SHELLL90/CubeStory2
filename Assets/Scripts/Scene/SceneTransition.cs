@@ -111,7 +111,7 @@ public class SceneTransition : MonoBehaviour
         background.raycastTarget = false;
         SceneIsSwitching = false;
 #if UNITY_WEBGL
-        AdsManager.Instance.ShowFullScreenAd();
+        //AdsManager.Instance.ShowFullScreenAd();
 #endif
 
 #if UNITY_ANDROID

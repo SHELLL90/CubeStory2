@@ -12,6 +12,9 @@ public class PlayerForce : MonoBehaviour
     [Header("Other")]
     [SerializeField] private float delayBetweenTryForceSide = 0.1f;
     [SerializeField] private ForceMode2D forceMode;
+    [Header("Force Down Platform Setting")]
+    [SerializeField] private LayerMask platformLayer;
+    [SerializeField] private float lengthRay;
 
     private Rigidbody2D _rigidbody;
     private PlayerStates _playerStates;
@@ -44,14 +47,39 @@ public class PlayerForce : MonoBehaviour
 
     private void TryForceDown()
     {
-        if (_timeCanNextForceDown < Time.time && !_playerStates.IsGroundDown)
+        if (_timeCanNextForceDown < Time.time)
         {
+            bool bottomPlatform = TryIgnorePlatform();
+            if (_playerStates.IsGroundDown && !bottomPlatform)
+            {
+                return;
+            }
+
             Force(forceDown);
             _timeCanNextForceDown = Time.time + forceDown.delayBetweenForce;
 
             _playerStates.ActionForceDown?.Invoke();
         }
     }
+
+    // Platform down
+
+    private bool TryIgnorePlatform()
+    {
+        Ray ray = new Ray(transform.position, Vector3.down);
+        RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, lengthRay, platformLayer.value);
+        if (hit.collider != null)
+        {
+            PlatformIngorePlayer platformIngorePlayer = hit.transform.GetComponent<PlatformIngorePlayer>();
+            if (platformIngorePlayer != null)
+            {
+                platformIngorePlayer.IgnorePlayer();
+                return true;
+            }
+        }
+        return false;
+    }
+    //
 
     private void TryForceLeft()
     {

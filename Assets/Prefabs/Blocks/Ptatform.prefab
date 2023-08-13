@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 8227267109600857440}
   - component: {fileID: 4254883675725851621}
   - component: {fileID: 9148635367948583254}
-  m_Layer: 7
+  - component: {fileID: 1538993752450747906}
+  m_Layer: 12
   m_Name: Ptatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131,3 +132,19 @@ PlatformEffector2D:
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
+--- !u!114 &1538993752450747906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1908534805505289369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa0b6d3b58fcc8b4f8c4d09e1c24ba82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  platformEffector: {fileID: 9148635367948583254}
+  defaultRotationalOffset: 0
+  newRotationalOffset: 180
+  timeIgnorePlayer: 0.1

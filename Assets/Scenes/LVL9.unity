@@ -374,6 +374,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2781360154225336596, guid: 25f0f42ebcaf0d944a64eef6125d0195, type: 3}
+      propertyPath: m_SortingOrder
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 3423373235023121752, guid: 25f0f42ebcaf0d944a64eef6125d0195, type: 3}
       propertyPath: m_Name
       value: grass_left (2)
@@ -1002,6 +1006,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2781360154225336596, guid: 25f0f42ebcaf0d944a64eef6125d0195, type: 3}
+      propertyPath: m_SortingOrder
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 3423373235023121752, guid: 25f0f42ebcaf0d944a64eef6125d0195, type: 3}
       propertyPath: m_Name
       value: grass_left (1)
@@ -1408,6 +1416,10 @@ PrefabInstance:
     - target: {fileID: 6520240326281954165, guid: a7dc865204af082488dba8be797736ec, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7692947028215192982, guid: a7dc865204af082488dba8be797736ec, type: 3}
+      propertyPath: m_SortingOrder
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -2689,6 +2701,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 1002765428}
     m_Modifications:
+    - target: {fileID: 1099228232562882410, guid: da1b855da9dc00b4b8ec173cce042c67, type: 3}
+      propertyPath: m_SortingOrder
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7187941998384655670, guid: da1b855da9dc00b4b8ec173cce042c67, type: 3}
       propertyPath: m_RootOrder
       value: 12
@@ -2864,6 +2880,10 @@ PrefabInstance:
     - target: {fileID: 2027861447689122863, guid: 25f0f42ebcaf0d944a64eef6125d0195, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2781360154225336596, guid: 25f0f42ebcaf0d944a64eef6125d0195, type: 3}
+      propertyPath: m_SortingOrder
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3423373235023121752, guid: 25f0f42ebcaf0d944a64eef6125d0195, type: 3}
       propertyPath: m_Name
@@ -4483,6 +4503,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 57fe6ed995279d94d82491855f2826b6, type: 3}
+    - target: {fileID: 2010333604302528266, guid: d39df7503160aca4b9a35487305fce61, type: 3}
+      propertyPath: m_SortingOrder
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 2010333604302528268, guid: d39df7503160aca4b9a35487305fce61, type: 3}
       propertyPath: m_RootOrder
       value: 11

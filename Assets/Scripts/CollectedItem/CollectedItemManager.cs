@@ -35,9 +35,22 @@ public class CollectedItemManager : MonoBehaviour
         Instance = null;
     }
 
-    public void Collect(TypeCollectedItem typeCollectedItem, float value)
+    public bool Collect(TypeCollectedItem typeCollectedItem, float value)
     {
         if (TypeCollectedItem.Diamond == typeCollectedItem) CurrentDiamonds += (int)value;
-        else if (TypeCollectedItem.Heart == typeCollectedItem) ActionRegenHealth?.Invoke(value);
+        else if (TypeCollectedItem.Heart == typeCollectedItem)
+        {
+            if (PlayerComponents.Health != null)
+            {
+                if (!PlayerComponents.Health.HealthIsMax())
+                {
+                    ActionRegenHealth?.Invoke(value);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        return true;
     }
 }

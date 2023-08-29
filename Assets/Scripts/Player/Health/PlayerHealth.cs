@@ -72,6 +72,10 @@ public class PlayerHealth : MonoBehaviour, IHealth
     }
 #endif
 
+    public bool HealthIsMax()
+    {
+        return _currentHealth >= maxHealth;
+    }
     public void Damage(float value)
     {
         Debug.Log("Damage player " + value);
@@ -90,9 +94,10 @@ public class PlayerHealth : MonoBehaviour, IHealth
         _playerStates.IsDead = true;
 
         InputManager.Instance.SwitchActionMap(ActionMaps.None);
+        PlayerDeathMenu.Instance.DeathCheck();
     }
 
-    private void Respawn()
+    public void Respawn()
     {
         transform.SetParent(null);
         Vector3 newPos = CheckPointManager.Instance.GetPositionCheckPoint();
@@ -104,5 +109,6 @@ public class PlayerHealth : MonoBehaviour, IHealth
         _playerStates.IsDead = false;
 
         InputManager.Instance.SwitchActionMap(ActionMaps.Player);
+        PlayerDeathMenu.Instance.DeathCheck();
     }
 }

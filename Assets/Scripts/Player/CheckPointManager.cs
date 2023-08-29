@@ -25,6 +25,7 @@ public class CheckPointManager : MonoBehaviour
 
     public Vector2 GetPositionCheckPoint()
     {
+        if (_currentCheckPoint == null) return PlayerComponents.Health.transform.position;
         return _currentCheckPoint.PositionCheckPoint;
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum Side { Down, Up, Left, Right }
+[RequireComponent(typeof(PlayerComponents))]
 public class PlayerStates : MonoBehaviour
 {
     public System.Action ActionForceDown { get; set; }

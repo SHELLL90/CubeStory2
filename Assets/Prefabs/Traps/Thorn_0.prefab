@@ -126,3 +126,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   typeDamageTrap: 1
   damageValue: 1
+  needForce: 1
+  forceMode: 1
+  powerForce: 2

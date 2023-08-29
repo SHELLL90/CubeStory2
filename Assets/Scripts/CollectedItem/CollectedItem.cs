@@ -34,13 +34,16 @@ public class CollectedItem : MonoBehaviour
     {
         if (_canCollect)
         {
-            _animator.Play(nameAnimationCollect);
+            bool collected = CollectedItemManager.Instance.Collect(typeCollectedItem, GetValueItem());
 
-            CollectedItemManager.Instance.Collect(typeCollectedItem, GetValueItem());
+            if (collected)
+            {
+                _animator.Play(nameAnimationCollect);
 
-            _canCollect = false;
+                _canCollect = false;
 
-            Invoke("Destroy", timeToDestroyAfterCollect);
+                Invoke("Destroy", timeToDestroyAfterCollect);
+            }
         }
     }
 

@@ -6,53 +6,75 @@ using UnityEngine.InputSystem;
 
 public enum ActionMaps { Player, None }
 
-//[RequireComponent(typeof(PlayerInput))]
+[RequireComponent(typeof(PlayerInput))]
 public class InputManager : MonoBehaviour
 {
     public static InputManager Instance { get; private set; }
 
+    [SerializeField] private ActionMaps startActionMap;
+
     private MainPlayerInput _input;
 
-    private void OnEnable()
-    {
-        Instance = this;
-        _input.Enable();
+    private PlayerInput _playerInput;
 
-        _input.Player.Move.performed += OnMove;
-        _input.Player.Move.canceled += OnMove;
-        _input.Player.Move.started += OnMove;
+    //private void OnEnable()
+    //{
+    //    Instance = this;
+    //    _input.Enable();
 
-        _input.Player.Jump.performed += OnJump;
-        _input.Player.Jump.canceled += OnJump;
-        _input.Player.Jump.started += OnJump;
+    //    _input.Player.Move.performed += OnMove;
+    //    _input.Player.Move.canceled += OnMove;
+    //    _input.Player.Move.started += OnMove;
+
+    //    _input.Player.Jump.performed += OnJump;
+    //    _input.Player.Jump.canceled += OnJump;
+    //    _input.Player.Jump.started += OnJump;
 
 
-        _input.Player.Left.performed += OnLeft;
-        _input.Player.Left.canceled += OnLeft;
-        _input.Player.Left.started += OnLeft;
+    //    _input.Player.Left.performed += OnLeft;
+    //    _input.Player.Left.canceled += OnLeft;
+    //    _input.Player.Left.started += OnLeft;
 
-        _input.Player.Right.performed += OnRight;
-        _input.Player.Right.canceled += OnRight;
-        _input.Player.Right.started += OnRight;
+    //    _input.Player.Right.performed += OnRight;
+    //    _input.Player.Right.canceled += OnRight;
+    //    _input.Player.Right.started += OnRight;
 
-        _input.Player.Down.performed += OnDown;
-        _input.Player.Down.canceled += OnDown;
-        _input.Player.Down.started += OnDown;
+    //    _input.Player.Down.performed += OnDown;
+    //    _input.Player.Down.canceled += OnDown;
+    //    _input.Player.Down.started += OnDown;
 
-        _input.Player.Attack.performed += OnAttack;
-        _input.Player.Attack.canceled += OnAttack;
-        _input.Player.Attack.started += OnAttack;
-    }
+    //    _input.Player.Attack.performed += OnAttack;
+    //    _input.Player.Attack.canceled += OnAttack;
+    //    _input.Player.Attack.started += OnAttack;
+    //}
 
-    private void OnDisable()
+    //private void OnDisable()
+    //{
+    //    Instance = null;
+    //    _input.Disable();
+    //}
+
+    private void OnDestroy()
     {
         Instance = null;
-        _input.Disable();
     }
 
     private void Awake()
     {
-        _input = new MainPlayerInput();
+        //if (Instance != null)
+        //{
+        //    Destroy(this.gameObject);
+        //    return;
+        //}
+
+        Instance = this;
+        //transform.SetParent(null);
+
+        //DontDestroyOnLoad(this.gameObject);
+
+        _playerInput = GetComponent<PlayerInput>();
+        SwitchActionMap(startActionMap);
+        //_input = new MainPlayerInput();
     }
 
     #region Player
@@ -111,6 +133,9 @@ public class InputManager : MonoBehaviour
 
 
     #endregion Player
+    #region ActionMap
+
+    private string _lastActionMap;
 
     public void SwitchActionMap(ActionMaps actionMap)
     {
@@ -118,7 +143,17 @@ public class InputManager : MonoBehaviour
     }
     public void SwitchActionMap(string actionMap)
     {
-        if (actionMap == "Player") _input.Player.Enable();
-        else _input.Player.Disable();
+        //_lastActionMap
+        //if (actionMap == "Player") _input.Player.Enable();
+        //else _input.Player.Disable();
+        _lastActionMap = _playerInput.currentActionMap.name;
+        Debug.Log("Last Action Map: " + _lastActionMap);
+        _playerInput.SwitchCurrentActionMap(actionMap);
     }
+    public void SwitchToLastActionMap()
+    {
+        SwitchActionMap(_lastActionMap);
+    }
+
+    #endregion ActionMap
 }

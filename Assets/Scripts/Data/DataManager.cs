@@ -15,6 +15,7 @@ public class DataManager : MonoBehaviour
     public static Action ActionDataLoaded { get; set; }
     
     public static bool IsMobile { get; private set; }
+    public static bool DataLoaded { get; private set; }
 
     private void Awake()
     {
@@ -41,6 +42,8 @@ public class DataManager : MonoBehaviour
 #if UNITY_EDITOR
         IsMobile = dataSetting.editorIsMobile;
 #endif
+
+        DataLoaded = true;
         ActionDataLoaded?.Invoke();
     }
 
@@ -120,6 +123,29 @@ public class DataManager : MonoBehaviour
     }
 #endif
 
+    public GroupLevelsSO[] GetGroups()
+    {
+        return dataSetting.groupsLevel;
+    }
+
+    public GroupLevelsSO GetGroupByID(string groupID)
+    {
+        GroupLevelsSO[] groups = GetGroups();
+        if (groups != null && groups.Length > 0)
+        {
+            for (int i = 0; i < groups.Length; i++)
+            {
+                if (groups[i].groupID == groupID) return groups[i];
+            }
+        }
+        else
+        {
+            Debug.LogError("Get Group By ID ERROR!!! Groups is null or length == 0 !!!");
+        }
+
+        return null;
+    }
+
     public LevelSO GetNextLevelSO()
     {
         LevelSO currentLevel = GetCurrentLevelSO();
@@ -179,7 +205,7 @@ public class DataManager : MonoBehaviour
         {
             for (int x = 0; x < dataSetting.groupsLevel[i].levels.Length; x++)
             {
-                if (dataSetting.groupsLevel[x].levels[i].id == idLevel)
+                if (dataSetting.groupsLevel[i].levels[x].id == idLevel)
                 {
                     return dataSetting.groupsLevel[i].levels[x];
                 }

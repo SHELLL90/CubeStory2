@@ -20,6 +20,18 @@ public class LevelsManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
 
+    public void PlayLevel(LevelSO levelSO)
+    {
+        if (levelSO != null)
+        {
+            SceneTransition.SwitchScene(levelSO.nameScene);
+        }
+        else
+        {
+            Debug.LogError("Play Level ERROR!!! LevelSO is Null!!!");
+        }
+    }
+
     public void GoToMenu()
     {
         SaveLevelProgress();
